@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habib-50000 - Gaming & Creator Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #021526, #03346E, #6EACDA);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #E2E8F0;
+            text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+        }
+        .sub-text {
+            font-size: 14px;
+            color: #90E0EF;
+            margin-top: 5px;
+        }
+        .card {
+            background: rgba(2, 21, 38, 0.85);
+            border: 2px solid #00B4D8;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+            text-align: center;
+        }
+        .btn {
+            background: linear-gradient(135deg, #0077B6, #00B4D8);
+            color: #ffffff;
+            border: 2px solid #90E0EF;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.6);
+            margin: 8px 5px;
+            transition: 0.2s;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .game-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .game-card {
+            background: rgba(3, 52, 110, 0.6);
+            border: 1px solid #6EACDA;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .game-card h3 {
+            font-size: 16px;
+            color: #90E0EF;
+            margin-bottom: 10px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #00B4D8;
+            background: #021526;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Habib-50000 Gaming Hub</h1>
+        <p class="sub-text">রনি, পুলিশ তাড়া, টেম্পল রান, রোবলক্স ও স্কুইড গেমের অফিশিয়াল জগত!</p>
+    </div>
+
+    <!-- Google Login Section -->
+    <div class="card" id="login-section">
+        <h3>গুগল অ্যাকাউন্ট দিয়ে লগইন করুন</h3>
+        <input type="text" id="username" placeholder="আপনার নাম লিখুন">
+        <br>
+        <button class="btn" onclick="googleLogin()">Google দিয়ে লগইন করুন</button>
+    </div>
+
+    <!-- User Dashboard (Hidden until login) -->
+    <div class="card" id="dashboard" style="display: none;">
+        <h3 id="welcome-msg">স্বাগতম!</h3>
+        <p>🪙 কয়েন: <span id="coins">100</span> | ₿ বিটকয়েন: <span id="bitcoin">0.001</span></p>
+        <br>
+        <button class="btn" onclick="subscribeChannel()">Habib-50000 সাবস্ক্রাইব করুন (বোনাস কয়েন পান)</button>
+    </div>
+
+    <!-- Games Section -->
+    <div class="card">
+        <h2>🎮 ফিচারড গেমসমূহ</h2>
+        <div class="game-grid">
+            <div class="game-card">
+                <h3>রনি ও পুলিশ রানার</h3>
+                <button class="btn" onclick="playGame('Ronir Runner')">Play</button>
+            </div>
+            <div class="game-card">
+                <h3>টেম্পল রান (Temple)</h3>
+                <button class="btn" onclick="playGame('Temple Run')">Play</button>
+            </div>
+            <div class="game-card">
+                <h3>রোবলক্স (Roblox 3D)</h3>
+                <button class="btn" onclick="playGame('Roblox')">Play</button>
+            </div>
+            <div class="game-card">
+                <h3>স্কুইড গেম (Squid)</h3>
+                <button class="btn" onclick="playGame('Squid Game')">Play</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Creator & AI Admin Section -->
+    <div class="card">
+        <h2>🛠️ গেম মেকার ও এআই স্টুডিও</h2>
+        <p style="font-size: 13px; color: #E2E8F0; margin-bottom: 10px;">নিজের মতো ব্লক, গ্রাস ও পানি দিয়ে গেম তৈরি করুন এবং এআই সার্ভার ম্যানেজমেন্ট কন্ট্রোল করুন।</p>
+        <button class="btn" onclick="openCreator()">গেম মেকার ওপেন করুন</button>
+        <button class="btn" style="background: linear-gradient(135deg, #d32f2f, #f44336);" onclick="adminDelete()">অ্যাডমিন ডিলিট অপশন</button>
+    </div>
+
+    <script>
+        function googleLogin() {
+            const name = document.getElementById('username').value;
+            if(name.trim() === "") {
+                alert("দয়া করে আপনার নাম লিখুন!");
+                return;
+            }
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('welcome-msg').innerText = "স্বাগতম, " + name + "!";
+            alert("সফলভাবে গুগল অ্যাকাউন্ট দিয়ে লগইন হয়েছে!");
+        }
+
+        function subscribeChannel() {
+            alert("Habib-50000 চ্যানেল সাবস্ক্রাইব করার জন্য ধন্যবাদ! আপনার অ্যাকাউন্টে বোনাস কয়েন ও বিটকয়েন যোগ করা হয়েছে।");
+            let currentCoins = parseInt(document.getElementById('coins').innerText);
+            document.getElementById('coins').innerText = currentCoins + 50;
+        }
+
+        function playGame(gameName) {
+            alert(gameName + " গেমটি লোড হচ্ছে... উপভোগ করুন!");
+        }
+
+        function openCreator() {
+            alert("গেম মেকার ও ব্লক এডিটর মোড চালু হচ্ছে। এখানে আপনি নিজের মতো গেম ডিজাইন করতে পারবেন!");
+        }
+
+        function adminDelete() {
+            let pass = prompt("অ্যাডমিন পাসওয়ার্ড দিন:");
+            if(pass === "habib50000") {
+                alert("অ্যাডমিন এক্সেস সফল। আপনি যেকোনো কনটেন্ট বা গেম ডিলিট করতে পারবেন।");
+            } else {
+                alert("ভুল পাসওয়ার্ড!");
+            }
+        }
+    </script>
+
+</body>
+</html>
